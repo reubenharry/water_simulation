@@ -35,6 +35,8 @@ neigh_modify every 1 delay 0 check yes
 
 timestep 2.0
 
+minimize 1.0e-10 1.0e-10 10000 10000
+
 fix constrain all shake 1.0e-4 100 0 b 1 a 1
 fix integrate all npt temp ${Text} ${Text} 100.0 iso ${Pext} ${Pext} 1000.0
 fix removeMomentum all momentum 1 linear 1 1 1
