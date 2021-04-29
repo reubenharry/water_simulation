@@ -8,7 +8,7 @@ include forcefield.TIP4P-2005
 
 replicate 20 20 20 
 
-variable Nrun equal 1000
+variable Nrun equal 100
 variable Nf equal ${Nrun}/10
 variable Ne equal 10
 variable Nr equal ${Nf}/${Ne}
@@ -58,13 +58,13 @@ compute	msd oxygen msd com yes
 fix msd oxygen ave/time 1 1 500 c_msd[4] file wat.msd
 
 #compute rdf all rdf 1000 2 2 # oxygen-oxygen
-#fix rdf all ave/time ${Ne} ${Nr_rdf} ${Nrun} c_rdf file wat.rdf mode vector
+#fix rdf all ave/time ${Ne} ${Nr_rdf} ${Nrun} c_rdf[1] file wat.rdf
 
 thermo_style custom step temp f_TempAve press f_PressAve f_PEAve_Mol f_DensAve 
 thermo_modify flush yes
 thermo ${Nf}
 
-dump trj all atom ${Ndump} wat.lammpstrj
+dump trj all atom 1 wat.lammpstrj
 
 run ${Nrun}
 
